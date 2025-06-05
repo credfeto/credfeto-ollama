@@ -1,0 +1,27 @@
+#! /bin/sh
+
+die() {
+    echo
+    echo "$@"
+    exit 1
+}
+
+
+[ -d /data/ollama ] || sudo mkdir /data/ollama
+
+git pull
+
+#sudo chown -R 10001:65533 /cache/npm || die "Could not set npm permissions"
+
+
+sudo docker volume create \
+  --opt type=none \
+  --opt o=bind \
+  --opt device=/data/ollama \
+  ollama
+
+sudo docker compose pull || die "Could not pull images"
+
+sudo docker compose up -d --remove-orphans || die "Could not start containers"
+
+

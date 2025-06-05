@@ -1,0 +1,25 @@
+services:
+ 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    hostname: ollama
+    restart: unless-stopped
+    stop_grace_period: 60s
+    stop_signal: SIGINT
+    ports:
+      - 11434:11434/tcp
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+    volumes:
+      - ollama:/root/.ollama
+      - ./entrypoint.sh:/entrypoint.sh
+    environment:
+      MODELS_TO_LOAD: "llama3.2:3b qwen2.5-coder:0.5b"
+
+volumes:
+  ollama:
+    name: ollama
+    external: true
+
+# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+
