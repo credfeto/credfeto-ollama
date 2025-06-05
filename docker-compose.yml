@@ -14,12 +14,11 @@ services:
       - ollama:/root/.ollama
       - ./entrypoint.sh:/entrypoint.sh
     environment:
-      MODELS_TO_LOAD: "llama3.2:3b qwen2.5-coder:0.5b"
+      MODELS_TO_LOAD: "llama3.2:3b qwen2.5-coder:0.5b qwen3:1.7b"
 
 volumes:
   ollama:
     name: ollama
     external: true
 
-# docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
 
