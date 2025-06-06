@@ -14,7 +14,7 @@ services:
       - ollama:/root/.ollama
       - ./entrypoint.sh:/entrypoint.sh
     environment:
-      MODELS_TO_LOAD: "llama3.2:3b qwen2.5-coder:0.5b qwen3:1.7b"
+      MODELS_TO_LOAD: "qwen3:0.6b qwen2.5-coder:0.5b gemma2:2b"
 
 volumes:
   ollama:
