@@ -8,6 +8,8 @@ die() {
 
 [ -z "$MODELS_TOLOAD" ] || die "MODELS_TO_LOAD not defined"
 
+export OLLAMA_KEEP_ALIVE=-1 
+
 # Start Ollama in the background.
 /bin/ollama serve &
 # Record Process ID.
